@@ -8,9 +8,48 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath)
+        /*
+        if indexPath.row == 0{
+            cell.textLabel?.text = "주소:" + location
+            return cell
+        }else if indexPath.row == 1{
+            cell.textLabel?.text = "전화번호:" + Tell
+            return cell
+        }else {
+            cell.textLabel?.text = "메뉴:" + menu
+            return cell
+        */
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "주소:" + location
+            return cell
+        case 1:
+            cell.textLabel?.text = "전화번호:" + Tell
+            return cell
+        
+        default:
+            cell.textLabel?.text = "메뉴:" + menu
+            return cell
+        }
+        }
+        
+    
+    
 
-
+    @IBOutlet weak var detailTableView: UITableView!
+    
       @IBOutlet weak var ImgView: UIImageView!
       var cellImage : String = ""
       
@@ -19,11 +58,16 @@ class DetailViewController: UIViewController {
       
       @IBOutlet weak var Tel: UILabel!
       var Tell = ""
+      var menu : String = ""
       override func viewDidLoad() {
+        
+        detailTableView.delegate = self
+        detailTableView.dataSource = self
+        
         super.viewDidLoad()
             ImgView.image = UIImage(named : cellImage)
-            loca.text = location
-            Tel.text = Tell
+        
+        
 
         // Do any additional setup after loading the view.
     }

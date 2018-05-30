@@ -15,7 +15,12 @@ class FoodStoreTableViewController: UITableViewController {
                              "부산광역시 부산진구 양정1동 356-22", "부산광역시 부산진구 양정동",
                             "부산광역시 부산진구 양정1동 350-1", "부산광역시 부산진구 양정1동 중앙대로 902"]
     var foodStoreTel = ["055-111-1111", "055-222-2222", "055-333-3333", "055-444-4444", "055-555-5555", "055-666-6666"]
-    
+    var foodMeuns = ["수육백반, 돼지국밥, 순대국밥, 내장국밥",
+                    "짜장면, 짬뽕, 짬짜면, 탕수육, 탕짜면, 양장피",
+                    "떡볶이, 오뎅, 떡강정, 핫도그, 튀김",
+                    "짜장면, 짬뽕, 짬짜면, 탕수육, 볶짜면, 양장피",
+                    "치킨마요, 참치마요, 돈불와퍼, 돈치와퍼, 돈까스카레",
+                    "짬뽕, 짜장면, 짬뽕밥, 볶음밥, 탕수육, 군만두"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,10 +127,12 @@ class FoodStoreTableViewController: UITableViewController {
                   let destinationController = segue.destination as! DetailViewController
                   //이름 넘기기
                   destinationController.title = foodStoreNames[indexPath.row]
+                
                   //이미지 넘기기
                   destinationController.cellImage = foodStoreImages[indexPath.row]
                   destinationController.location = foodStoreLocation[indexPath.row]
                   destinationController.Tell = foodStoreTel[indexPath.row]
+                 destinationController.menu = foodMeuns[indexPath.row]
             }
             
       }
